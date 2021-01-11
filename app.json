@@ -1,0 +1,30 @@
+{
+    "name": "Xray-HeroKu",
+    "description": "Deploy Xray on Heroku",
+    "keywords": ["xray vmess vless websocket"],
+    "env": {
+        "UUID": {
+            "description": "您的UUID，UUID在线生成网站: https://www.uuidgenerator.net",
+            "value": "068749e2-0947-4efa-8bb3-50d267a5e5ce"
+        },
+        "IndexPage": {
+            "description": "自定义部署web页面，参考：https://github.com/SavileLee/Xray-HeroKu/blob/Rules/etc/IndexPage.md",
+            "value": "https://raw.githubusercontent.com/caddyserver/dist/master/welcome/index.html"
+        },
+        "CONFIGCADDY": {
+            "description": "自定义Caddy配置文件",
+            "value": "https://raw.githubusercontent.com/SavileLee/Xray-HeroKu/Rules/etc/Caddyfile"
+        },
+        "CONFIGXRAY": {
+            "description": "自定义Xray配置文件",
+            "value": "https://raw.githubusercontent.com/SavileLee/Xray-HeroKu/Rules/etc/config.json"
+        },
+        "StoreFiles": {
+            "description": "自定义存储文件列表",
+            "value": "https://raw.githubusercontent.com/SavileLee/Xray-HeroKu/Rules/etc/StoreFiles"
+        }
+    },
+    "website": "https://github.com/SavileLee/Xray-HeroKu",
+    "repository": "https://github.com/SavileLee/Xray-HeroKu",
+    "stack": "container"
+}

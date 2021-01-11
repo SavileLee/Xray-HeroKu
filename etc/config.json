@@ -1,0 +1,81 @@
+{
+    "inbounds": [
+        {
+            "listen": "/etc/caddy/vmess",
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                    "id": "$UUID"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                    "path": "/$UUID-vmess"
+                }
+            }
+        },
+        {
+            "listen": "/etc/caddy/vless",
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "$UUID"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                    "path": "/$UUID-vless"
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "blocked"
+        },
+        {
+            "protocol": "socks",
+            "tag": "sockstor",
+            "settings": {
+                "servers": [
+                    {
+                        "address": "127.0.0.1",
+                        "port": 9050
+                    }
+                ]
+            }
+        }
+    ],
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": [
+            {
+                "type": "field",
+                "outboundTag": "sockstor",
+                "domain": ["geosite:tor"]
+            },
+            {
+                "type": "field",
+                "domain": ["geosite:category-ads-all"],
+                "outboundTag": "blocked"
+            },
+            {
+                "type": "field",
+                "ip": ["geoip:private"],
+                "outboundTag": "blocked"
+            }
+        ]
+    }
+}
