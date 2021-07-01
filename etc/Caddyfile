@@ -13,14 +13,6 @@ basicauth /$UUID/* {
     $UUID $MYUUID-HASH
 }
 
-@websocket_xray_vmess {
-header Connection *Upgrade*
-header Upgrade    websocket
-path /$UUID-vmess
-}
-reverse_proxy @websocket_xray_vmess unix//etc/caddy/vmess
-
-
 @websocket_xray_vless {
 header Connection *Upgrade*
 header Upgrade    websocket
